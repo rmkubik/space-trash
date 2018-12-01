@@ -30,6 +30,15 @@ class GameScene extends Phaser.Scene {
 
         this.backgroundLayer = this.map.createDynamicLayer('Background', this.tileset, 0, 0);
         this.objectsLayer = this.map.createDynamicLayer('Objects', this.tileset, 0, 0);
+
+        // Set colliding tiles before converting the layer to Matter bodies!
+        this.map.setCollisionByExclusion([ -1, 0 ]);
+
+        // Convert the layer. Any colliding tiles will be given a Matter body.
+        // If a tile has collision shapes from Tiled, these will be loaded. If
+        // not, a default rectangle body will be used.
+        // The body will be accessible via tile.physics.matterBody.
+        this.matter.world.convertTilemapLayer(this.objectsLayer);
     }
 
     update(time, delta) {
