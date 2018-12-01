@@ -9,8 +9,8 @@ const config = {
     pixelArt: true,
     roundPixels: true,
     parent: 'content',
-    width: 400,
-    height: 240,
+    width: 256,
+    height: 256,
     physics: {
         default: 'matter',
         matter: {
