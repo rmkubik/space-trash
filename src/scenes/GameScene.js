@@ -1,3 +1,5 @@
+import Player from '../sprites/Player';
+
 class GameScene extends Phaser.Scene {
     constructor(test) {
         super({
@@ -10,7 +12,12 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
-
+        this.player = new Player({
+            scene: this,
+            key: 'player',
+            x: 16 * 6,
+            y: this.sys.game.config.height - 48 - 48
+        });
     }
 
     update(time, delta) {
