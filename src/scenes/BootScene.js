@@ -1,4 +1,6 @@
 import makeAnimations from '../helpers/animations';
+import tiles from '../../assets/images/prototype_tiles.png';
+import characters from '../../assets/images/astronaut_anims.png';
 
 class BootScene extends Phaser.Scene {
     constructor(test) {
@@ -22,6 +24,18 @@ class BootScene extends Phaser.Scene {
             makeAnimations(this);
             progress.destroy();
             this.scene.start('GameScene');
+        });
+
+        this.load.spritesheet('tiles', tiles, {
+            frameWidth: 16,
+            frameHeight: 16,
+            // spacing: 2
+        });
+
+        this.load.spritesheet('characters', characters, {
+            frameWidth: 32,
+            frameHeight: 32,
+            // spacing: 2
         });
     }
 }

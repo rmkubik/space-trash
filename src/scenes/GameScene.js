@@ -14,7 +14,8 @@ class GameScene extends Phaser.Scene {
     create() {
         this.player = new Player({
             scene: this,
-            key: 'player',
+            key: 'characters',
+            frame: 0,
             x: 16 * 6,
             y: this.sys.game.config.height - 48 - 48
         });
