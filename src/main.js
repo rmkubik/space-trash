@@ -12,10 +12,13 @@ const config = {
     width: 400,
     height: 240,
     physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 800 },
-            debug: false
+        default: 'matter',
+        matter: {
+            gravity: {
+                y: 0.8
+            },
+            debug: true,
+            debugBodyColor: 0xffffff
         }
     },
     scene: [
