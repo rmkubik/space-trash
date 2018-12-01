@@ -1,0 +1,14 @@
+{ "columns":4,
+ "image":"..\/..\/aseprite\/prototype_tiles.png",
+ "imageheight":64,
+ "imagewidth":64,
+ "margin":0,
+ "name":"Prototype Tiles",
+ "spacing":0,
+ "tilecount":16,
+ "tiledversion":"1.2.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":1.2
+}
