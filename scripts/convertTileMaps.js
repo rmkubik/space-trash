@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 
-// const levelsDir = './assets/levels';
-const rawDir = path.join('../rawAssets', 'tilemaps');
-const tilesetsDir = path.join('../rawAssets', 'tilesets');
+// const levelsDir = './raw/levels';
+const rawDir = path.join('../rawAssets/tiled', 'tilemaps');
+const tilesetsDir = path.join('../rawAssets/tiled', 'tilesets');
 const buildDir = path.join('../assets', 'tilemaps');
 
 const readdir = util.promisify(fs.readdir);

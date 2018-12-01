@@ -1,6 +1,7 @@
 import makeAnimations from '../helpers/animations';
 import tiles from '../../assets/images/prototype_tiles.png';
 import characters from '../../assets/images/astronaut_anims.png';
+import map from '../../assets/tilemaps/Room.json';
 
 class BootScene extends Phaser.Scene {
     constructor(test) {
@@ -37,6 +38,8 @@ class BootScene extends Phaser.Scene {
             frameHeight: 32,
             // spacing: 2
         });
+
+        this.load.tilemapTiledJSON('map', map);
     }
 }
 
