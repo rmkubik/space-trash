@@ -40,6 +40,8 @@ class GameScene extends Phaser.Scene {
         this.player.sprite.applyForce({ x: 0.001, y: 0.01 });
         // this.player.sprite.setFixedRotation();
 
+        this.item = this.matter.add.sprite(100, 100, 'trash', 0);
+
         // this.item = new Player({
         //     scene: this,
         //     key: 'characters',
