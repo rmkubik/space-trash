@@ -1,5 +1,7 @@
 import { Machine } from 'xstate';
-import { interpret } from 'xstate/lib/interpreter'; // or use your own interpreter!
+import { interpret } from 'xstate/lib/interpreter'; 
+import { convertVelocityToAngle } from '../helpers/math';
+
 export default class Player { // extends Phaser.GameObjects.Sprite {
     constructor(config) {
         // super();
@@ -38,7 +40,7 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                     }
                 },
                 landing: {
-                    onEntry: ['playLandAnimation', 'freeze'],
+                    onEntry: ['freeze', 'alignSpriteWithNormal','playLandAnimation'],
                     on: {
                         animationend: 'clinging',
                     }
@@ -72,8 +74,10 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                     this.sprite.setStatic(false);
                 },
                 jump: () => {
-                    console.log(this.normal);
                     this.sprite.applyForce({ x: -0.01 * this.normal.x, y: -0.01 * this.normal.y });
+                },
+                alignSpriteWithNormal: () => {
+                    this.sprite.angle = convertVelocityToAngle(this.normal) - 90;
                 }
             }
         });
