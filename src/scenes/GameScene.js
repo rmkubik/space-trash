@@ -12,16 +12,6 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
-        this.player = new Player({
-            scene: this,
-            key: 'characters',
-            frame: 0,
-            x: 16 * 6,
-            y: this.sys.game.config.height - 48 - 48
-        });
-        // this.player.setCircle();
-        // this.player.setBounce(0.96);
-
         // Add the map + bind the tileset
         this.map = this.make.tilemap({
             key: 'map'
@@ -39,6 +29,17 @@ class GameScene extends Phaser.Scene {
         // not, a default rectangle body will be used.
         // The body will be accessible via tile.physics.matterBody.
         this.matter.world.convertTilemapLayer(this.objectsLayer);
+
+        this.player = new Player({
+            scene: this,
+            key: 'characters',
+            frame: 0,
+            x: 16 * 6,
+            y: this.sys.game.config.height - 48 - 48
+        });
+        this.player.sprite.applyForce({ x: 0, y: 0.01 });
+        // this.player.setCircle();
+        // this.player.body.setBounce(1);
     }
 
     update(time, delta) {
