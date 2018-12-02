@@ -57,13 +57,14 @@ class GameScene extends Phaser.Scene {
             // bodyB.gameObject.setTint(0x00ff00);
             // console.log(bodyA);
             // bodyB.gameObject.play('land');
-            this.player.sprite.setStatic(true);
-            this.player.sprite.play('land');
+            this.player.state.send('collisionstart');
             this.player.sprite.on('animationcomplete', ({ key }) => {
-                if (key === 'land') {
-                    this.player.sprite.setStatic(false);
-                    this.player.sprite.play('jump');
-                }
+                // if (key === 'land') {
+                //     this.player.sprite.setStatic(false);
+                //     this.player.sprite.play('jump');
+                //     this.player.state.send('TOGGLE');
+                // }
+                this.player.state.send('animationend');
             });
         });
 
