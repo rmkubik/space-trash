@@ -57,6 +57,9 @@ class GameScene extends Phaser.Scene {
             // bodyB.gameObject.setTint(0x00ff00);
             // console.log(bodyA);
             // bodyB.gameObject.play('land');
+            // this.matter.add.constraint(bodyA, bodyB, this.player.sprite.body.width, 1);
+            // event.pairs.forEach((event) => console.log(event.collision.normal, bodyA, bodyB));
+            this.player.normal = event.pairs[0].collision.normal; // get first normal vector from collision
             this.player.state.send('collisionstart');
             this.player.sprite.on('animationcomplete', ({ key }) => {
                 // if (key === 'land') {

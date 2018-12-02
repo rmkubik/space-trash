@@ -72,7 +72,8 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                     this.sprite.setStatic(false);
                 },
                 jump: () => {
-                    this.sprite.applyForce({ x: 0, y: -0.01 });
+                    console.log(this.normal);
+                    this.sprite.applyForce({ x: -0.01 * this.normal.x, y: -0.01 * this.normal.y });
                 }
             }
         });
