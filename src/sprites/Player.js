@@ -6,7 +6,16 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
     constructor(config) {
         // super();
         // config.scene.physics.world.enable(this);
-        this.sprite = config.scene.matter.add.sprite(config.x, config.y, config.key, config.frame);
+        this.sprite = config.scene.matter.add.sprite(config.x, config.y, config.key, config.frame, {
+            shape: {
+                type: 'rectangle',
+                height: 40,
+                width: 32,
+                x: 8,
+                y: 4,
+            }
+        });
+
         // this.sprite.setCircle();
         // this.sprite.setPolygon(16, 3);
         this.sprite.setBounce(1);
