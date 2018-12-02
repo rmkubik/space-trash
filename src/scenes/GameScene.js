@@ -34,7 +34,7 @@ class GameScene extends Phaser.Scene {
             scene: this,
             key: 'characters',
             frame: 0,
-            x: 16 * 6,
+            x: 16 * 4,
             y: this.sys.game.config.height - 48 - 48
         });
         this.player.sprite.applyForce({ x: 0.001, y: 0.01 });
