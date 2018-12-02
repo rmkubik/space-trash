@@ -72,7 +72,7 @@ module.exports = {
                     name: '[path][name].[hash].[ext]',
                   },
                 },
-              },
+            },
         ]
     },
    /* node: {

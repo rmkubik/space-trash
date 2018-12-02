@@ -65,7 +65,16 @@ module.exports = {
     rules: [
       { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
       { test: /phaser-split\.js$/, use: 'raw-loader' },
-      { test: [/\.vert$/, /\.frag$/], use: 'raw-loader' }
+      { test: [/\.vert$/, /\.frag$/], use: 'raw-loader' },
+      {
+        test: /\.(jpg|png)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[hash].[ext]',
+          },
+        },
+      },
     ]
   },
   optimization: {
