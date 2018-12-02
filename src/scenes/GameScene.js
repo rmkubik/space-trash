@@ -37,7 +37,7 @@ class GameScene extends Phaser.Scene {
             x: 16 * 6,
             y: this.sys.game.config.height - 48 - 48
         });
-        this.player.sprite.applyForce({ x: 0, y: 0.01 });
+        this.player.sprite.applyForce({ x: 0.001, y: 0.01 });
         // this.player.setCircle();
         // this.player.body.setBounce(1);
     }

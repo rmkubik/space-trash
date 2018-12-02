@@ -557,11 +557,49 @@
             "name": "Prototype Tiles",
             "spacing": 0,
             "tilecount": 16,
-            "tiledversion": "1.2.0",
             "tileheight": 16,
+            "tiles": {
+                "0": {
+                    "objectgroup": {
+                        "draworder": "index",
+                        "name": "",
+                        "objects": [
+                            {
+                                "height": 0,
+                                "id": 1,
+                                "name": "",
+                                "polygon": [
+                                    {
+                                        "x": 0.401030648767332,
+                                        "y": -1.10283428411016
+                                    },
+                                    {
+                                        "x": -15.4298289906263,
+                                        "y": 14.5976876201594
+                                    },
+                                    {
+                                        "x": 0.370950575835126,
+                                        "y": 14.6979452823512
+                                    }
+                                ],
+                                "rotation": 0,
+                                "type": "",
+                                "visible": true,
+                                "width": 0,
+                                "x": 15.4498916201633,
+                                "y": 1.15297698657935
+                            }
+                        ],
+                        "opacity": 1,
+                        "type": "objectgroup",
+                        "visible": true,
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            },
             "tilewidth": 16,
             "type": "tileset",
-            "version": 1.2,
             "firstgid": 1
         }
     ],
