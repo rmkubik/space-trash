@@ -40,17 +40,33 @@ class GameScene extends Phaser.Scene {
         this.player.sprite.applyForce({ x: 0.001, y: 0.01 });
         // this.player.sprite.setFixedRotation();
 
-        this.item = new Player({
-            scene: this,
-            key: 'characters',
-            frame: 0,
-            x: 16 * 7,
-            y: this.sys.game.config.height - 48 - 48
-        });
-        // this.item.sprite.setFixedRotation();
+        // this.item = new Player({
+        //     scene: this,
+        //     key: 'characters',
+        //     frame: 0,
+        //     x: 16 * 7,
+        //     y: this.sys.game.config.height - 48 - 48
+        // });
+        // // this.item.sprite.setFixedRotation();
         
-        this.matter.add.constraint(this.player.sprite, this.item.sprite, 32, 1, { angleA: 1, angleB: 1 });
+        // this.matter.add.constraint(this.player.sprite, this.item.sprite, 32, 1, { angleA: 1, angleB: 1 });
         this.matter.add.mouseSpring();
+
+        this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
+            // bodyA.gameObject.setTint(0xff0000);
+            // bodyB.gameObject.setTint(0x00ff00);
+            // console.log(bodyA);
+            // bodyB.gameObject.play('land');
+            this.player.sprite.play('land');
+        });
+
+        this.matter.world.on('collisionend', (event, bodyA, bodyB) => {
+            // bodyA.gameObject.setTint(0xff0000);
+            // bodyB.gameObject.setTint(0x00ff00);
+            // console.log(bodyA);
+            // bodyB.gameObject.play('jump');
+            this.player.sprite.play('jump');
+        });
     }
 
     update(time, delta) {

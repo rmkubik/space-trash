@@ -17,7 +17,15 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                 first: 0,
             })
         });
-        this.sprite.play('land');
+
+        config.scene.anims.create({
+            key: 'jump',
+            frames: config.scene.anims.generateFrameNumbers('characters', {
+                start: 5,
+                end: 8,
+                first: 5,
+            })
+        });
     }
 
     update(keys, time, delta) {
