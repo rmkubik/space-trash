@@ -77,10 +77,10 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                     this.sprite.play('land');
                 },
                 freeze: () => {
-                    this.sprite.setStatic(true);
+                    // this.sprite.setStatic(true);
                 },
                 unFreeze: () => {
-                    this.sprite.setStatic(false);
+                    // this.sprite.setStatic(false);
                 },
                 jump: () => {
                     this.sprite.applyForce({ x: -0.01 * this.normal.x, y: -0.01 * this.normal.y });
