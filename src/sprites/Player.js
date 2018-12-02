@@ -47,7 +47,7 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                     on: {
                         animationend: 'floating',
                     },
-                    onExit: ['unFreeze'],
+                    onExit: ['unFreeze', 'jump'],
                 },
                 clinging: {
                     on: {
@@ -65,12 +65,14 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                 playLandAnimation: () => {
                     this.sprite.play('land');
                 },
-
                 freeze: () => {
                     this.sprite.setStatic(true);
                 },
                 unFreeze: () => {
                     this.sprite.setStatic(false);
+                },
+                jump: () => {
+                    this.sprite.applyForce({ x: 0, y: -0.01 });
                 }
             }
         });

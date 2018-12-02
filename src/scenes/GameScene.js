@@ -68,6 +68,8 @@ class GameScene extends Phaser.Scene {
             });
         });
 
+        this.input.keyboard.on('keydown_SPACE', () => { this.player.state.send('jump'); });
+
         // this.matter.world.on('collisionend', (event, bodyA, bodyB) => {
         //     // bodyA.gameObject.setTint(0xff0000);
         //     // bodyB.gameObject.setTint(0x00ff00);
