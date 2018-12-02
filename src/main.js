@@ -18,7 +18,7 @@ const config = {
                 y: 0,
             },
             debug: true,
-            debugBodyColor: 0xffffff
+            debugBodyColor: 0xff0000
         }
     },
     scene: [
