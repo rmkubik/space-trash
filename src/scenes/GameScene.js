@@ -57,16 +57,24 @@ class GameScene extends Phaser.Scene {
             // bodyB.gameObject.setTint(0x00ff00);
             // console.log(bodyA);
             // bodyB.gameObject.play('land');
+            this.player.sprite.setStatic(true);
             this.player.sprite.play('land');
+            this.player.sprite.on('animationcomplete', ({ key }) => {
+                if (key === 'land') {
+                    this.player.sprite.setStatic(false);
+                    this.player.sprite.play('jump');
+                }
+            });
         });
 
-        this.matter.world.on('collisionend', (event, bodyA, bodyB) => {
-            // bodyA.gameObject.setTint(0xff0000);
-            // bodyB.gameObject.setTint(0x00ff00);
-            // console.log(bodyA);
-            // bodyB.gameObject.play('jump');
-            this.player.sprite.play('jump');
-        });
+        // this.matter.world.on('collisionend', (event, bodyA, bodyB) => {
+        //     // bodyA.gameObject.setTint(0xff0000);
+        //     // bodyB.gameObject.setTint(0x00ff00);
+        //     // console.log(bodyA);
+        //     // bodyB.gameObject.play('jump');
+        //     this.player.sprite.play('jump');
+        //     this.player.sprite.setStatic(false);
+        // });
     }
 
     update(time, delta) {
