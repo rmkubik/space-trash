@@ -38,8 +38,19 @@ class GameScene extends Phaser.Scene {
             y: this.sys.game.config.height - 48 - 48
         });
         this.player.sprite.applyForce({ x: 0.001, y: 0.01 });
-        // this.player.setCircle();
-        // this.player.body.setBounce(1);
+        // this.player.sprite.setFixedRotation();
+
+        this.item = new Player({
+            scene: this,
+            key: 'characters',
+            frame: 0,
+            x: 16 * 7,
+            y: this.sys.game.config.height - 48 - 48
+        });
+        // this.item.sprite.setFixedRotation();
+        
+        this.matter.add.constraint(this.player.sprite, this.item.sprite, 32, 1, { angleA: 1, angleB: 1 });
+        this.matter.add.mouseSpring();
     }
 
     update(time, delta) {
