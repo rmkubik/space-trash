@@ -22,6 +22,8 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
         this.sprite.setFrictionAir(0);
         this.sprite.setFrictionStatic(0);
 
+        this.constraints = [];
+
         config.scene.anims.create({
             key: 'land',
             frames: config.scene.anims.generateFrameNumbers('characters', {
@@ -78,9 +80,13 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                 },
                 freeze: () => {
                     // this.sprite.setStatic(true);
+                    this.constraints.push(config.scene.matter.add.constraint(this.sprite, this.collisionTarget, this.sprite.body.width, 1));
                 },
                 unFreeze: () => {
                     // this.sprite.setStatic(false);
+                    this.constraints.forEach((constraint) => {
+                        config.scene.matter.world.removeConstraint(constraint);
+                    });
                 },
                 jump: () => {
                     this.sprite.applyForce({ x: -0.01 * this.normal.x, y: -0.01 * this.normal.y });

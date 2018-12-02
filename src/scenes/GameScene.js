@@ -56,30 +56,22 @@ class GameScene extends Phaser.Scene {
 
         this.constraints = [];
         this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
-            // bodyA.gameObject.setTint(0xff0000);
-            // bodyB.gameObject.setTint(0x00ff00);
-            // console.log(bodyA);
-            // bodyB.gameObject.play('land');
             if (bodyA.gameObject === this.player.sprite || bodyB.gameObject === this.player.sprite) {
-                this.constraints.push(this.matter.add.constraint(bodyA, bodyB, this.player.sprite.body.width, 1));
+                // bind other object to player so that player can reference it
+                this.player.collisionTarget = bodyA.gameObject !== this.player.sprite ? bodyA : bodyB;
+                this.player.normal = event.pairs[0].collision.normal; // get first normal vector from collision
+
+                this.player.state.send('collisionstart');
+                this.player.sprite.on('animationcomplete', ({ key }) => {
+                    this.player.state.send('animationend');
+                });
             }
-            // event.pairs.forEach((event) => console.log(event.collision.normal, bodyA, bodyB));
-            this.player.normal = event.pairs[0].collision.normal; // get first normal vector from collision
-            this.player.state.send('collisionstart');
-            this.player.sprite.on('animationcomplete', ({ key }) => {
-                // if (key === 'land') {
-                //     this.player.sprite.setStatic(false);
-                //     this.player.sprite.play('jump');
-                //     this.player.state.send('TOGGLE');
-                // }
-                this.player.state.send('animationend');
-            });
         });
 
         this.input.keyboard.on('keydown_SPACE', () => {
-            this.constraints.forEach((constraint) => {
-                this.matter.world.removeConstraint(constraint);
-            });
+            // this.constraints.forEach((constraint) => {
+            //     this.matter.world.removeConstraint(constraint);
+            // });
             this.player.state.send('jump');
         });
 
