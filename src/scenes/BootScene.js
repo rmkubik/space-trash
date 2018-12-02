@@ -1,7 +1,7 @@
 import makeAnimations from '../helpers/animations';
 import tiles from '../../assets/images/prototype_tiles.png';
 import characters from '../../assets/images/astronaut_anims.png';
-import map from '../../assets/tilemaps/Room.json';
+import map from '../../assets/tilemaps/Test.json';
 
 class BootScene extends Phaser.Scene {
     constructor(test) {
@@ -22,7 +22,7 @@ class BootScene extends Phaser.Scene {
         // Register a load complete event to launch the title screen when all files are loaded
         this.load.on('complete', () => {
             // prepare all animations, defined in a separate file
-            makeAnimations(this);
+            // makeAnimations(this);
             progress.destroy();
             this.scene.start('GameScene');
         });
@@ -34,8 +34,8 @@ class BootScene extends Phaser.Scene {
         });
 
         this.load.spritesheet('characters', characters, {
-            frameWidth: 32,
-            frameHeight: 32,
+            frameWidth: 48,
+            frameHeight: 48,
             // spacing: 2
         });
 
