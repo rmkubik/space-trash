@@ -42,6 +42,11 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
             })
         });
 
+        const freeze = () => {
+            this.sprite.setAngularVelocity(0);
+            this.sprite.setVelocity(0);
+        };
+
         const fsm = Machine({
             initial: 'floating',
             states: {
@@ -80,19 +85,27 @@ export default class Player { // extends Phaser.GameObjects.Sprite {
                 },
                 freeze: () => {
                     // this.sprite.setStatic(true);
-                    this.constraints.push(config.scene.matter.add.constraint(this.sprite, this.collisionTarget, this.sprite.body.width, 1));
+                    // console.log(this.collisionTarget);
+                    if (this.collisionTarget.gameObject instanceof Phaser.Physics.Matter.TileBody) {
+                        config.scene.matter.world.on('beforeupdate', freeze, this);
+                    }
+                    this.constraints.push(config.scene.matter.add.constraint(this.sprite, this.collisionTarget, this.sprite.body.height, 1));
                 },
                 unFreeze: () => {
                     // this.sprite.setStatic(false);
                     this.constraints.forEach((constraint) => {
                         config.scene.matter.world.removeConstraint(constraint);
                     });
+                    if (this.collisionTarget.gameObject instanceof Phaser.Physics.Matter.TileBody) {
+                        config.scene.matter.world.removeListener('beforeupdate', freeze, this);
+                    }
                 },
                 jump: () => {
                     this.sprite.applyForce({ x: -0.01 * this.normal.x, y: -0.01 * this.normal.y });
                 },
                 alignSpriteWithNormal: () => {
-                    this.sprite.angle = convertVelocityToAngle(this.normal) - 90;
+                    // this.sprite.angle = convertVelocityToAngle(this.normal) - 90;
+                    this.sprite.setAngle(convertVelocityToAngle(this.normal) - 90);
                 }
             }
         });
