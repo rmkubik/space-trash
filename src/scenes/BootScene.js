@@ -34,8 +34,8 @@ class BootScene extends Phaser.Scene {
         });
 
         this.load.spritesheet('characters', characters, {
-            frameWidth: 32,
-            frameHeight: 32,
+            frameWidth: 48,
+            frameHeight: 48,
             // spacing: 2
         });
 
