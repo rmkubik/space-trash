@@ -40,6 +40,8 @@ class GameScene extends Phaser.Scene {
         this.player.sprite.applyForce({ x: 0.001, y: 0.01 });
         // this.player.sprite.setFixedRotation();
 
+        this.item = this.matter.add.sprite(100, 100, 'trash', 0);
+
         // this.item = new Player({
         //     scene: this,
         //     key: 'characters',
@@ -52,26 +54,26 @@ class GameScene extends Phaser.Scene {
         // this.matter.add.constraint(this.player.sprite, this.item.sprite, 32, 1, { angleA: 1, angleB: 1 });
         this.matter.add.mouseSpring();
 
+        this.constraints = [];
         this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
-            // bodyA.gameObject.setTint(0xff0000);
-            // bodyB.gameObject.setTint(0x00ff00);
-            // console.log(bodyA);
-            // bodyB.gameObject.play('land');
-            // this.matter.add.constraint(bodyA, bodyB, this.player.sprite.body.width, 1);
-            // event.pairs.forEach((event) => console.log(event.collision.normal, bodyA, bodyB));
-            this.player.normal = event.pairs[0].collision.normal; // get first normal vector from collision
-            this.player.state.send('collisionstart');
-            this.player.sprite.on('animationcomplete', ({ key }) => {
-                // if (key === 'land') {
-                //     this.player.sprite.setStatic(false);
-                //     this.player.sprite.play('jump');
-                //     this.player.state.send('TOGGLE');
-                // }
-                this.player.state.send('animationend');
-            });
+            if (bodyA.gameObject === this.player.sprite || bodyB.gameObject === this.player.sprite) {
+                // bind other object to player so that player can reference it
+                this.player.collisionTarget = bodyA.gameObject !== this.player.sprite ? bodyA : bodyB;
+                this.player.normal = event.pairs[0].collision.normal; // get first normal vector from collision
+
+                this.player.state.send('collisionstart');
+                this.player.sprite.on('animationcomplete', ({ key }) => {
+                    this.player.state.send('animationend');
+                });
+            }
         });
 
-        this.input.keyboard.on('keydown_SPACE', () => { this.player.state.send('jump'); });
+        this.input.keyboard.on('keydown_SPACE', () => {
+            // this.constraints.forEach((constraint) => {
+            //     this.matter.world.removeConstraint(constraint);
+            // });
+            this.player.state.send('jump');
+        });
 
         // this.matter.world.on('collisionend', (event, bodyA, bodyB) => {
         //     // bodyA.gameObject.setTint(0xff0000);
