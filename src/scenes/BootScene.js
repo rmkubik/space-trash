@@ -2,7 +2,7 @@ import makeAnimations from '../helpers/animations';
 import tiles from '../../assets/images/prototype_tiles.png';
 import characters from '../../assets/images/astronaut_anims.png';
 import trash from '../../assets/images/space_trash.png';
-import map from '../../assets/tilemaps/Test.json';
+import map from '../../assets/tilemaps/BigBoiRoom.json';
 
 class BootScene extends Phaser.Scene {
     constructor(test) {

@@ -58,8 +58,11 @@ class GameScene extends Phaser.Scene {
         this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
             if (bodyA.gameObject === this.player.sprite || bodyB.gameObject === this.player.sprite) {
                 // bind other object to player so that player can reference it
-                this.player.collisionTarget = bodyA.gameObject !== this.player.sprite ? bodyA : bodyB;
-                this.player.normal = event.pairs[0].collision.normal; // get first normal vector from collision
+                if (this.player.state.current !== 'clinging') {
+                    this.player.collisionTarget = bodyA.gameObject !== this.player.sprite ? bodyA : bodyB;
+                    this.player.normal = event.pairs[0].collision.normal; // get first normal vector from collision
+                }
+                // console.log([...event.pairs]);
 
                 this.player.state.send('collisionstart');
                 this.player.sprite.on('animationcomplete', ({ key }) => {
